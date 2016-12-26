@@ -17,9 +17,9 @@ print txt.read()
 print "Type your filename again:"
 file_again = raw_input(">")
 
-txt_again = open(file_again)
+txt_again = open(filename)
 
-print txt.read()
+print txt_again.read()
 # 加分练习
 print "And finally, we close it."
 txt.close() # 是从ex16中复制过来的代码，target没有改成“txt”导致报错
