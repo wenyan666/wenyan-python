@@ -1,28 +1,16 @@
 # -*- coding:UTF-8 -*-
-tabby_cat = "\tI'm tabbed in."
-persian_cat = "I'm split\non a line."
-backslash_cat = "I'm \\ a \\ cat."
+# Here's some new strange stuff, remember type it exactly.
+# 用\n可以换行
+days = "Mon Tue Wed Thu Fri Sat Sun"
+months = "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug"
+# 这里是用逗号连接了字符串，是不是用加号也可以？
+# 是的，确实可以！
+print "Here are the days: ", days
+print "Here are the months: " + months
 
-fat_cat = """
-I'll so a list:
-\t* Cat food
-\t* Catnip\n\t* Grass
+print """
+There's something going on here.
+With the there double-quotes.
+We'll be able to type as much as we like.
+Even 4 lines if we want, or5, or 6.
 """
-
-print tabby_cat
-print persian_cat
-print backslash_cat
-print fat_cat
-
-# 加分习题3：将转义序列和格式化字符串组合到一起，创建一种更复杂的格式。 
-a = 6
-b = 480
-c = "yeah!"
-print "How about \'%r\'/\'%r\'?" % (b, a),b/a
-print "%s That\'s coll!" %c
-
-# 附加练习
-while True:
-   for i in ["/","-","|","\\","|"]:
-      print "%s\r" % i,
-# 这个还挺神奇的，一直转个不停，也没有办法结束，这是啥？
