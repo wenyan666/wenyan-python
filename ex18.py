@@ -34,4 +34,5 @@ def two(what, how):
 one("Manger", "smart", "book")
 two("Python", "following the big bug.")
 已运行成功。
+‘运行函数(run)’、‘调用函数(call)’、和 ‘使用函数(use)’是同一个意思
 '''
