@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+with open("weather_info.txt", "r") as f:
+	weather = f.readlines()
+
+weather_data = []
+	
+for line in weather:
+	line = line.split(',')
+	weather_data = {line[0]:line[1]}
+
+history_data = []
+
+while True:
+	city = input("告诉我你想知道哪个城市的天气？")
+	if city in weather_data:
+		print ("%s 的天气为：%s" % (city, weather_data[city]))
+		history_data.append(city)
+	elif city == "help":
+		print ("""
+		hi,我是一个小型的天气查询系统！
+		这里是为您准备好的帮助说明：
+		输入城市名可查询该城市的天气
+		输入help可获取帮助说明
+		输入hitory，可查看历史查询记录
+		输入quit或者exit，就和我说拜拜咯~
+		""")
+	elif city == "hitory":
+		for i in history_data:
+			print (i, weather_data[i])		
+	elif city == "quit" or city == "exit":
+		print ("See you next time~")
+		exit()
+	else:
+		print ("""
+		请输入正确的城市名称!
+		如果不知道怎么使用，可以输入“help”试试哟~
+		""")
