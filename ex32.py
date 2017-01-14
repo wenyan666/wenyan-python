@@ -18,7 +18,7 @@ for x in change:
 # we can also build lists, first start with empty ones
 elemengts = []
 # then use the range function to do 0 to 5 counts
-for y in range(0,6):
+for y in range(0, 6):
     print ("Adding %d to the list." % y)
     # append is a function that lists Understand
     elemengts.append(y)
@@ -30,3 +30,7 @@ why = []
 why.append(y)
 for i in why:
     print("Why just give me one number: %d?" %i)
+
+another = range(0, 3)
+for i in another:
+    print ("Skip the range and get: %d" % i)
