@@ -1,0 +1,126 @@
+## 三分钟玩转Tkinter
+
+乔帮主有个很精妙的[比喻](https://brilliant.org/wiki/object-oriented-programming/#object-oriented-programming)：class是有生命的，它们有记忆（attribute），还可以做些事情（method）。  
+理解了class，再看Tkinter其实很简单。  
+
+这篇文章主要是介绍tkinter的核心概念和基本语法，具体的细节就不cover了。  
+Note：一定要注意代码的注释，正是大大小小的细节坑呀～～
+
+### Step0：import | 导入Tkinter包
+要调用Tkinter，首先要导入它。  
+可以全部导入，也可以只导入你需要的部分。  
+```python
+from tkinter import *       # tkinter首字母小写（python3.x）
+```
+### Step1：window | 窗口
+要做GUI，首先你得有个窗口不是？  
+窗口可以很多，随你喜欢，不过主窗口一般叫**root**或者**master**。
+```python
+root = tk()                 # 新建一个窗口
+root.wm_title("")           # 给它起个名字
+root.mainloop               # 让它保持显示
+```
+注意，窗口的建立要在之后所有操作之前。  
+很简单的道理，窗口（window）都没有，组件（widget）你往哪儿放？
+
+### Step2：widget | 组件
+好了，现在有个窗口，可以往上面添点东西了。
+
+#### 语法  
+组件其实就是class，Tkinter提供了各种组件，直接调用就好。  
+基本的语法和用class创建object是一样一样的：
+```python
+botton1 = Botton(root, text='help', command=help)
+
+# 注意：
+# 组件class首字母大写：Botton
+# 括号内第一个，要写清它附着的窗口（or else）
+# command=help，调用的是help（）函数，括号略去
+```
+翻译成大白话，就是我们用Botton这个class创建了一个botton1，把它放在root窗口上，它会显示help这个词，单击它，就会执行help()函数。  
+嗯，就是这样，其他可以类推～
+
+#### Option  
+从刚才的栗子🌰可以看出，`Botton()`的括号里可以放进去很多很多内容。这些内容叫**option**（选项）。  
+我把它们分为两种：  
+- 某种特征（e.g. text/height/font/background）
+- 某种动作（e.g. command）
+
+你看，跟class里的attribute和function是不是很像？  
+通过赋予它们不同的参数，就可以生成形形色色的组件啦，它们还能做各种各样的事情（执行不同的函数）。  
+
+#### 变变变！
+有个很特别的option叫textvariable，通过它可以代入变量。  
+```python
+v = StringVar()
+label = Label(root, textvariable=v)
+```
+这样，label显示的文字就会随着v的变化而变化。  
+是不是很方便？
+
+除了在创建组件的时候可以设定参数之外，后来想修改要怎么办呢？
+```python
+label.config()          # 方法一
+label                   # 方法二
+```
+
+每个组件有不同的option，具体可以参考：[class reference](http://effbot.org/tkinterbook/tkinter-index.htm)  
+这次作业需要的基本组件可以参考这张表：
+
+Widget | Aim   | Explain
+------ | ------ | -----
+frame  | set up | 把窗口撑到你想要的大小
+label  | output | 显示文字
+entry  | input  | 输入文字
+botton | action | 按下，触发特定事件
+
+看完这些，你已经能把GUI的基本框架搭出来啦。  
+
+
+### Step3：widget's geometry manager | 组件布局
+现在你已经有了一堆组件，它们在root窗口上挤成一团。  
+等等，为啥会挤成一团？  
+因为还没给它们分配位置呀！  
+怎么办呢？Tkinter提供了三种定位方法：
+- grid
+- pack
+- place  
+
+这几种方法的区别就不细讲了，拿grid举栗🌰：
+```python
+botton1.grid(row=0, column=0, sticky=w)
+```
+括号里的参数能从不同角度锚定这个按钮的位置。  
+给每个组件加一句，你的窗口就能排列整齐啦。
+
+
+### Step4： widget's method | 组件方法
+
+有的widget没有command option，然而又想让它执行某个动作，怎么办？  
+这时候就要用到[widget's method](http://effbot.org/tkinterbook/widget.htm)。  
+举个栗子🌰：
+```python
+entry.bind('<Return>', enter)
+
+# enter是指enter（）函数，同样略去括号
+```
+这样，在entry输入框上按下回车键的时候，程序就会自动执行enter()函数啦。
+
+组件布局、组件方法都可以看作widget的附加功能，比较一下看：
+```python
+botton1.grid(row=0, column=0)
+entry.bind('<Return>', enter)     
+```
+语法上是不是差不多？  
+OK，都教你啦，自己去耍吧～
+
+### Ending
+刚接触新事物的时候是很难看到全貌的，这时也不用心急。   
+可以先从例子练起，积累经验混个脸熟，再从宏观上把握就容易了。  
+看英文文档也是一样，其实[effbot.org](http://effbot.org/tkinterbook/tkinter-index.htm)上面总结得很好的（虽然有些细节没有点明）。  
+一开始没有经验，就不容易get到它的好。  
+所谓reference，就是写写代码，回去翻翻，再写写再翻翻，不着急一次看完，你也消化不了。
+
+---------
+如有错漏，敬请指正！  
+~~发现字里行间莫名有种英式中文的气息OTZ~~
